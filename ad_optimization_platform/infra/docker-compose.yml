@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  api_gateway:
+    build: ./services/api_gateway
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - clickhouse
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/ad_db
+      - CLICKHOUSE_URL=http://clickhouse:8123
+
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ad_db
+    ports:
+      - "5432:5432"
+
+  clickhouse:
+    image: clickhouse/clickhouse-server
+    restart: always
+    ports:
+      - "8123:8123"
