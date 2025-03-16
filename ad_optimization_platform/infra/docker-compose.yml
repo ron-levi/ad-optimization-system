@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   api_gateway:
-    build: ./services/api_gateway
+    build: ../services/api_gateway
     ports:
       - "8000:8000"
     depends_on:
