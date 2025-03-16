@@ -1,5 +1,6 @@
 import os
 
+
 repo_structure = {
     "ad_optimization_platform": {
         "services": {
